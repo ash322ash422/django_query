@@ -2,17 +2,20 @@ from rest_framework import serializers
 from webapp.models import Query
 from webapp.my_utils import dbg
 from .signals import query_updated_signal
+from django.utils.translation import gettext as _
+#from rest_framework.validators import ValidationError
 
 class QuerySerializer(serializers.ModelSerializer): #NOTE: This does not have delete method
     qry_name = serializers.CharField(max_length=100)
-
-    def validate_qry_name(self, value): ##override. Invoked on CREATE,UPDATE
-        dbg("inside QuerySerializer.validate_qry_name")
-        
-        if len(value) < 2:
-           raise serializers.ValidationError("qry_name is too short")
-        return value
-
+    
+    def validate(self, data): ##override. Invoked on CREATE,UPDATE.
+        """
+        Validate the data
+        """
+        if len(data['qry_name']) < 3:
+            raise serializers.ValidationError({'errorrr': 'qry_name is too short.'}) 
+        return data
+    
     def create(self, validated_data):#override. Invoked on CREATE
         """
         Create and return a new `Query` instance, given the validated data.

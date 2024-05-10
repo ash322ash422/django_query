@@ -23,7 +23,8 @@ class Query(models.Model ):
     def __str__(self):#override
         return "{} by {}".format(self.qry_name, self.create_by,)
     
-    def save(self, *args, **kwargs):#override
+    #override. This is not recommended. Instead use pre_save/post_save with signals.
+    def save(self, *args, **kwargs):
         if len(self.qry_name) < 3:
             #add save logic here
             print("qry_name is small:", self.qry_name)
