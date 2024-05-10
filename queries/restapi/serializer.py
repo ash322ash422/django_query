@@ -23,7 +23,11 @@ class QuerySerializer(serializers.ModelSerializer):
     
     def update(self, instance, validated_data):
         dbg("inside QuerySerializer.update")
-        #for attr, value in validated_data.items():   setattr(instance, attr, value)
+        dbg("validated_data=",validated_data)
+        
+        #for attr, value in validated_data.items():
+        #   setattr(instance, attr, value)
+        
         instance.save()
         
         # if instance.status == OrderStatus.COMPLETED:
