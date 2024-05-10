@@ -17,9 +17,9 @@ class QueryView(View):
         return HttpResponse(
             "GET http://127.0.0.1:8000/restapi/query/list/ <br/> \
             POST http://127.0.0.1:8000/restapi/query/create/ <br/> \
-            PUT http://127.0.0.1:8000/restapi/query/update/<pk> <br/> \
-            DELETE http://127.0.0.1:8000/restapi/query/delete/<pk> <br/> \
-            GET http://127.0.0.1:8000/restapi/query/get/<pk>    ")
+            PUT http://127.0.0.1:8000/restapi/query/update/{pk} <br/> \
+            DELETE http://127.0.0.1:8000/restapi/query/delete/{pk} <br/> \
+            GET http://127.0.0.1:8000/restapi/query/get/{pk}    ")
 
 class QueryListAPIView(ListAPIView):
     #permission_classes = (IsAuthenticated,)
